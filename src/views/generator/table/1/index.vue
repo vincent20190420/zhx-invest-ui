@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import { BusinessTable1List } from '@api/demo.business.table.1'
+import { TableList } from '@api/zhx.generator'
 export default {
   // name 值和本页的 $route.name 一致才可以缓存页面
-  name: 'demo-business-table-1',
+  name: 'zhx-generator',
   components: {
     'DemoPageHeader': () => import('./componnets/PageHeader'),
     'DemoPageMain': () => import('./componnets/PageMain'),
@@ -58,7 +58,7 @@ export default {
       this.$notify({
         title: '开始请求模拟表格数据'
       })
-      BusinessTable1List({
+      TableList({
         ...form,
         ...this.page
       })

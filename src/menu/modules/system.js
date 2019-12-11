@@ -3,7 +3,7 @@ export default {
   title: '系统管理',
   icon: 'cog',
   children: (pre => [
-    { path: `${pre}index`, title: '组织管理', icon: 'home' },
+    { path: `${pre}index`, title: '系统管理', icon: 'cog' },
     {
       title: '用户管理',
       icon: 'user',
