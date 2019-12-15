@@ -7,7 +7,7 @@
             size="mini"
             style="margin-bottom: -18px;">
 
-        <el-form-item label="数据库类型" prop="type">
+        <el-form-item label="数据库类型" prop="dbType">
             <el-select
                     v-model="form.type"
                     placeholder="数据库类型"
@@ -17,7 +17,7 @@
             </el-select>
         </el-form-item>
 
-        <el-form-item label="数据库地址" prop="user">
+        <el-form-item label="数据库地址" prop="host">
             <el-input
                     v-model="form.host"
                     placeholder="数据库地址"
