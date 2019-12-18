@@ -24,6 +24,13 @@
                     style="width: 100px;"/>
         </el-form-item>
 
+        <el-form-item label="数据库名称" prop="service">
+            <el-input
+                    v-model="form.service"
+                    placeholder="数据库名称"
+                    style="width: 100px;"/>
+        </el-form-item>
+
         <el-form-item label="用户名" prop="user">
             <el-input
                     v-model="form.user"
@@ -65,6 +72,7 @@
         form: {
           type: 'mysql',
           host: 'localhost',
+          service: 'es-admin',
           user: 'root',
           password: 'root',
           note: ''
