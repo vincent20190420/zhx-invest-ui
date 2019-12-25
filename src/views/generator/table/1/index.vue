@@ -68,8 +68,8 @@
             this.$notify({
               title: '表格数据请求完毕'
             })
-            this.table = res.data.records
-            this.page.pageTotal = res.data.total
+            this.table = res.records
+            this.page.pageTotal = res.total
           })
           .catch(err => {
             this.loading = false
