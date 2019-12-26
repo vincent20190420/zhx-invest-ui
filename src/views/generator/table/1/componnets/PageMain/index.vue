@@ -3,42 +3,18 @@
         <el-form
                 :inline="true"
                 size="mini">
-            <el-form-item :label="`已选数据下载 [ ${currentTableData.length} ]`">
-                <el-button-group>
-                    <el-button
-                            type="primary"
-                            size="mini"
-                            :disabled="currentTableData.length === 0"
-                            @click="handleDownloadXlsx(currentTableData)">
-                        xlsx
-                    </el-button>
-                    <el-button
-                            type="primary"
-                            size="mini"
-                            :disabled="currentTableData.length === 0"
-                            @click="handleDownloadCsv(currentTableData)">
-                        csv
-                    </el-button>
-                </el-button-group>
-            </el-form-item>
-            <el-form-item :label="`已选数据下载 [ ${multipleSelection.length} ]`">
+            <el-form-item :label="`选中 [ ${multipleSelection.length} ]`">
                 <el-button-group>
                     <el-button
                             type="primary"
                             size="mini"
                             :disabled="multipleSelection.length === 0"
                             @click="handleDownloadXlsx(multipleSelection)">
-                        xlsx
-                    </el-button>
-                    <el-button
-                            type="primary"
-                            size="mini"
-                            :disabled="multipleSelection.length === 0"
-                            @click="handleDownloadCsv(multipleSelection)">
-                        csv
+                        生成代码
                     </el-button>
                 </el-button-group>
             </el-form-item>
+
         </el-form>
 
         <el-table
