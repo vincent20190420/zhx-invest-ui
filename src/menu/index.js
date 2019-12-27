@@ -16,8 +16,8 @@ import demoD2Crud from './modules/demo-d2-crud'
 import demoFrame from './modules/demo-frame'
 //系统管理
 import system from './modules/system'
-//代码生成器
-import generator from './modules/zhx-generator'
+//程序员工具
+import tools from './modules/zhx-tools'
 
 // 菜单 侧边栏
 export const menuAside = [
@@ -30,7 +30,7 @@ export const menuAside = [
   demoD2Crud,
   demoFrame,
   system,
-  generator
+  tools
 ]
 
 // 菜单 顶栏
@@ -67,5 +67,5 @@ export const menuHeader = [
   demoPlayground,
   demoBusiness,
   system,
-  generator
+  tools
 ]

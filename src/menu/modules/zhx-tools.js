@@ -1,5 +1,5 @@
 export default {
-  path: '/generator',
+  path: '/tools',
   title: '程序员工具',
   icon: 'android',
   children: (pre => [
@@ -7,9 +7,7 @@ export default {
     {
       title: '代码生成器',
       icon: 'file-code-o ',
-      children: [
-        { path: `${pre}table/1`, title: '代码生成器' }
-      ]
-    },
-  ])('/generator/')
+      path: `${pre}generator`
+    }
+  ])('/tools/')
 }

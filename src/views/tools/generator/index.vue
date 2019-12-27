@@ -17,15 +17,15 @@
 </template>
 
 <script>
-  import { TableList } from '@api/zhx.generator'
+  import { TableList } from '@api/zhx.tools'
 
   export default {
     // name 值和本页的 $route.name 一致才可以缓存页面
     name: 'zhx-generator',
     components: {
-      'DemoPageHeader': () => import('./componnets/PageHeader'),
-      'DemoPageMain': () => import('./componnets/PageMain'),
-      'DemoPageFooter': () => import('./componnets/PageFooter')
+      'DemoPageHeader': () => import('./PageHeader'),
+      'DemoPageMain': () => import('./PageMain'),
+      'DemoPageFooter': () => import('./PageFooter')
     },
     data () {
       return {

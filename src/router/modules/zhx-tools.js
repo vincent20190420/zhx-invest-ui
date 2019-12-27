@@ -6,29 +6,29 @@ const _import = require('@/libs/util.import.' + process.env.NODE_ENV)
 const meta = { auth: true }
 
 export default {
-  path: '/generator',
-  name: 'zhx-generator',
+  path: '/tools',
+  name: 'zhx-tools',
   meta,
-  redirect: { name: 'zhx-generator-index' },
+  redirect: { name: 'zhx-tools-index' },
   component: layoutHeaderAside,
   children: (pre => [
     {
       path: 'index',
       name: `${pre}index`,
-      component: _import('generator/index'),
+      component: _import('tools/index'),
       meta: {
         ...meta,
         title: '程序员工具首页'
       }
     },
     {
-      path: 'table/1',
-      name: `${pre}table-1`,
-      component: _import('generator/table/1'),
+      path: 'generator',
+      name: `${pre}generator`,
+      component: _import('tools/generator/index'),
       meta: {
         ...meta,
         title: '代码生成器'
       }
     }
-  ])('zhx-generator-')
+  ])('zhx-tools-')
 }

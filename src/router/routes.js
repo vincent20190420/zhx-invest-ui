@@ -6,7 +6,7 @@ import charts from './modules/charts'
 import components from './modules/components'
 import element from './modules/element'
 import business from './modules/business'
-import generator from './modules/generator'
+import tools from './modules/zhx-tools'
 
 import layoutHeaderAside from '@/layout/header-aside'
 
@@ -65,7 +65,7 @@ const frameIn = [
   components,
   element,
   business,
-  generator
+  tools
 ]
 
 /**

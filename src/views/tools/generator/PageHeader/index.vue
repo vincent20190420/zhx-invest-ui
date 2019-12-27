@@ -11,7 +11,7 @@
             <el-select
                     v-model="form.type"
                     placeholder="数据库类型"
-                    style="width: 100px;">
+                    style="width: 80px;">
                 <el-option label="mysql" value="mysql"/>
                 <el-option label="oracle" value="oracle"/>
             </el-select>
@@ -21,28 +21,35 @@
             <el-input
                     v-model="form.host"
                     placeholder="数据库地址"
-                    style="width: 100px;"/>
+                    style="width: 120px;"/>
         </el-form-item>
 
         <el-form-item label="数据库名称" prop="service">
             <el-input
                     v-model="form.service"
                     placeholder="数据库名称"
-                    style="width: 100px;"/>
+                    style="width: 120px;"/>
         </el-form-item>
 
         <el-form-item label="用户名" prop="user">
             <el-input
                     v-model="form.user"
                     placeholder="用户名"
-                    style="width: 100px;"/>
+                    style="width: 60px;"/>
         </el-form-item>
 
         <el-form-item label="密码" prop="password">
             <el-input
                     v-model="form.password"
                     placeholder="密码"
-                    style="width: 120px;"/>
+                    style="width: 60px;"/>
+        </el-form-item>
+
+        <el-form-item label="表名" prop="tableName">
+            <el-input
+                    v-model="form.tableName"
+                    placeholder="表名"
+                    style="width: 80px;"/>
         </el-form-item>
 
         <el-form-item>
@@ -54,13 +61,13 @@
             </el-button>
         </el-form-item>
 
-        <el-form-item>
-            <el-button
-                    @click="handleFormReset">
-                <d2-icon name="refresh"/>
-                重置
-            </el-button>
-        </el-form-item>
+        <!--<el-form-item>-->
+            <!--<el-button-->
+                    <!--@click="handleFormReset">-->
+                <!--<d2-icon name="refresh"/>-->
+                <!--重置-->
+            <!--</el-button>-->
+        <!--</el-form-item>-->
 
     </el-form>
 </template>

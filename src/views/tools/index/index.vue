@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import menu from '@/menu/modules/zhx-generator'
+import menu from '@/menu/modules/zhx-tools'
 export default {
   data () {
     return {
       menu,
       banner: {
-        title: '代码生成器',
-        subTitle: '代码的搬运工'
+        title: '程序员工具',
+        subTitle: '程序员工具'
       }
     }
   }
