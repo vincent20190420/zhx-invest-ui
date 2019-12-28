@@ -81,8 +81,7 @@
           host: 'localhost',
           service: 'es-admin',
           user: 'root',
-          password: 'root',
-          note: ''
+          password: 'root'
         },
         rules: {
           type: [{ required: true, message: '请选择一个数据库类型', trigger: 'change' }],

@@ -1,26 +1,29 @@
 <template>
     <div>
         <el-form
+                :model="form2"
+                :rules="rules2"
                 :inline="true"
+                ref="form2"
                 size="mini">
-            <!--<el-form-item label="项目名" prop="project">-->
-                <!--<el-input-->
-                        <!--v-model="form.project"-->
-                        <!--placeholder="项目名"-->
-                        <!--style="width: 100px;"/>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="项目中文名" prop="projectCN">-->
-                <!--<el-input-->
-                        <!--v-model="form.projectCN"-->
-                        <!--placeholder="项目中文名"-->
-                        <!--style="width: 100px;"/>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="主包名" prop="mainPackage">-->
-                <!--<el-input-->
-                        <!--v-model="form.mainPackage"-->
-                        <!--placeholder="主包名"-->
-                        <!--style="width: 100px;"/>-->
-            <!--</el-form-item>-->
+            <el-form-item label="项目名" prop="project">
+                <el-input
+                        v-model="form2.project"
+                        placeholder="项目名"
+                        style="width: 100px;"/>
+            </el-form-item>
+            <el-form-item label="项目中文名" prop="projectCN">
+                <el-input
+                        v-model="form2.projectCN"
+                        placeholder="项目中文名"
+                        style="width: 100px;"/>
+            </el-form-item>
+            <el-form-item label="主包名" prop="mainPackage">
+                <el-input
+                        v-model="form2.mainPackage"
+                        placeholder="主包名"
+                        style="width: 160px;"/>
+            </el-form-item>
 
             <el-form-item :label="`选中 [ ${multipleSelection.length} ]`">
                 <el-button-group>
@@ -28,7 +31,7 @@
                             type="primary"
                             size="mini"
                             :disabled="multipleSelection.length === 0"
-                            @click="handleDownloadXlsx(multipleSelection)">
+                            @click="genCode(multipleSelection)">
                         生成代码
                     </el-button>
                 </el-button-group>
@@ -66,79 +69,103 @@
 </template>
 
 <script>
-    import BooleanControl from '../BooleanControl'
-    import BooleanControlMini from '../BooleanControlMini'
+  import BooleanControl from '../BooleanControl'
+  import BooleanControlMini from '../BooleanControlMini'
 
-    export default {
-        components: {
-            BooleanControl,
-            BooleanControlMini
+  export default {
+    components: {
+      BooleanControl,
+      BooleanControlMini
+    },
+    props: {
+      tableData: {
+        default: () => []
+      },
+      loading: {
+        default: false
+      }
+    },
+    data () {
+      return {
+        form2: {
+          project:"admin",
+          projectCN:"系统管理",
+          mainPackage:"com.zhxsoft"
         },
-        props: {
-            tableData: {
-                default: () => []
-            },
-            loading: {
-                default: false
-            }
+        rules2: {
+          project: [{ required: true, message: '项目名不能为空', trigger: 'change' }],
+          projectCN: [{ required: true, message: '项目中文名不能为空', trigger: 'change' }],
+          mainPackage: [{ required: true, message: '主包名不能为空', trigger: 'change' }]
         },
-        data() {
-            return {
-                currentTableData: [],
-                multipleSelection: [],
-                downloadColumns: [
-                    {label: '表名', prop: 'tableName'},
-                    {label: '说明', prop: 'tableComment'}
-                ]
-            }
+        currentTableData: [],
+        multipleSelection: [],
+        columns: [
+          { label: '表名', prop: 'tableName' },
+          { label: '说明', prop: 'tableComment' }
+        ]
+      }
+    },
+    watch: {
+      tableData: {
+        handler (val) {
+          this.currentTableData = val
         },
-        watch: {
-            tableData: {
-                handler(val) {
-                    this.currentTableData = val
-                },
-                immediate: true
-            }
-        },
-        methods: {
-            handleSwitchChange(val, index) {
-                const oldValue = this.currentTableData[index]
-                this.$set(this.currentTableData, index, {
-                    ...oldValue,
-                    type: val
-                })
-                // 注意 这里并没有把修改后的数据传递出去 如果需要的话请自行修改
-            },
-            handleSelectionChange(val) {
-                this.multipleSelection = val
-            },
-            downloadDataTranslate(data) {
-                return data.map(row => ({
-                    ...row,
-                    type: row.type ? '禁用' : '正常',
-                    used: row.used ? '已使用' : '未使用'
-                }))
-            },
-            handleDownloadXlsx(data) {
-                this.$export.excel({
-                    title: 'D2Admin 表格示例',
-                    columns: this.downloadColumns,
-                    data: this.downloadDataTranslate(data)
-                })
-                    .then(() => {
-                        this.$message('导出表格成功')
-                    })
-            },
-            handleDownloadCsv(data) {
-                this.$export.csv({
-                    title: 'D2Admin 表格示例',
-                    columns: this.downloadColumns,
-                    data: this.downloadDataTranslate(data)
-                })
-                    .then(() => {
-                        this.$message('导出CSV成功')
-                    })
-            }
-        }
+        immediate: true
+      }
+    },
+    methods: {
+      genCode (data) {
+        this.$refs.form2.validate((valid) => {
+          if (valid) {
+            this.$emit('submit', this.form2)
+          } else {
+            this.$notify.error({
+              title: '错误',
+              message: '表单校验失败'
+            })
+            return false
+          }
+        })
+      },
+
+      handleSwitchChange (val, index) {
+        const oldValue = this.currentTableData[index]
+        this.$set(this.currentTableData, index, {
+          ...oldValue,
+          type: val
+        })
+        // 注意 这里并没有把修改后的数据传递出去 如果需要的话请自行修改
+      },
+      handleSelectionChange (val) {
+        this.multipleSelection = val
+      },
+      downloadDataTranslate (data) {
+        return data.map(row => ({
+          ...row,
+          type: row.type ? '禁用' : '正常',
+          used: row.used ? '已使用' : '未使用'
+        }))
+      },
+      handleDownloadXlsx (data) {
+        this.$export.excel({
+          title: 'D2Admin 表格示例',
+          columns: this.cloums,
+          data: this.downloadDataTranslate(data)
+        })
+          .then(() => {
+            this.$message('导出表格成功')
+          })
+      },
+      handleDownloadCsv (data) {
+        this.$export.csv({
+          title: 'D2Admin 表格示例',
+          columns: this.cloums,
+          data: this.downloadDataTranslate(data)
+        })
+          .then(() => {
+            this.$message('导出CSV成功')
+          })
+      }
     }
+  }
 </script>

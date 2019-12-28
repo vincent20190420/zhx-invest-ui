@@ -6,7 +6,8 @@
                 ref="header"/>
         <demo-page-main
                 :table-data="table"
-                :loading="loading"/>
+                :loading="loading"
+                @submit="genCode"/>
         <demo-page-footer
                 slot="footer"
                 :current="page.current"
@@ -62,23 +63,43 @@
         TableList({
           ...form,
           ...this.page
-        })
-          .then(res => {
+        }).then(res => {
             this.loading = false
             this.$notify({
               title: '表格数据请求完毕'
             })
             this.table = res.records
             this.page.total = res.total
-          })
-          .catch(err => {
+          }).catch(err => {
             this.loading = false
             this.$notify({
               title: '表格数据请求异常'
             })
             console.log('err', err)
           })
-      }
+      },
+      genCode (data) {
+        alert(data)
+        this.loading = true
+        this.$notify({
+          title: '开始请求表格数据'
+        })
+        genCode({
+          ...form2,
+          ...data
+        }).then(res => {
+          this.loading = false
+          this.$notify({
+            title: '表格数据请求完毕'
+          })
+        }).catch(err => {
+          this.loading = false
+          this.$notify({
+            title: '表格数据请求异常'
+          })
+          console.log('err', err)
+        })
+      },
     }
   }
 </script>
