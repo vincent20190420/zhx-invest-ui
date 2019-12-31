@@ -1,10 +1,10 @@
 import request from '@/plugin/axios'
 
-var zhx_base_url = 'http://localhost:1000'
+var ZHX_BASE_URL = 'http://localhost:1000'
 
 export function TableList (data) {
   return request({
-    baseURL: zhx_base_url,
+    baseURL: ZHX_BASE_URL,
     url: '/api/generator/list',
     method: 'post',
     data
@@ -13,9 +13,9 @@ export function TableList (data) {
 
 export function genCode (data) {
   return request({
-    baseURL: zhx_base_url,
+    baseURL: ZHX_BASE_URL,
     url: '/api/generator/code',
-    method: 'get',
+    method: 'post',
     data
   })
 }

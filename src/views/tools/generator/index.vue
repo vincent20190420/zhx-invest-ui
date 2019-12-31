@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { TableList } from '@api/zhx.tools'
+  import { TableList,genCode} from '@api/zhx.tools'
 
   export default {
     // name 值和本页的 $route.name 一致才可以缓存页面
@@ -78,15 +78,13 @@
             console.log('err', err)
           })
       },
-      genCode (data) {
-        alert(data)
+      genCode (form) {
         this.loading = true
         this.$notify({
           title: '开始请求表格数据'
         })
         genCode({
-          ...form2,
-          ...data
+          ...form
         }).then(res => {
           this.loading = false
           this.$notify({
@@ -99,7 +97,7 @@
           })
           console.log('err', err)
         })
-      },
+      }
     }
   }
 </script>
