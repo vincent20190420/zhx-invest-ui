@@ -69,79 +69,81 @@
 </template>
 
 <script>
-    import BooleanControl from '../BooleanControl'
-    import BooleanControlMini from '../BooleanControlMini'
+  import BooleanControl from '../BooleanControl'
+  import BooleanControlMini from '../BooleanControlMini'
 
-    export default {
-        components: {
-            BooleanControl,
-            BooleanControlMini
+  export default {
+    components: {
+      BooleanControl,
+      BooleanControlMini
+    },
+    props: {
+      tableData: {
+        default: () => []
+      },
+      loading: {
+        default: false
+      }
+    },
+    data () {
+      return {
+        form2: {
+          project: 'admin',
+          projectCN: '系统管理',
+          mainPackage: 'com.zhxsoft',
+          tables: []
         },
-        props: {
-            tableData: {
-                default: () => []
-            },
-            loading: {
-                default: false
+        rules2: {
+          project: [{ required: true, message: '项目名不能为空', trigger: 'change' }],
+          projectCN: [{ required: true, message: '项目中文名不能为空', trigger: 'change' }],
+          mainPackage: [{ required: true, message: '主包名不能为空', trigger: 'change' }]
+        },
+        currentTableData: [],
+        multipleSelection: [],
+        columns: [
+          { label: '表名', prop: 'tableName' },
+          { label: '说明', prop: 'tableComment' }
+        ]
+      }
+    },
+    watch: {
+      tableData: {
+        handler (val) {
+          this.currentTableData = val
+        },
+        immediate: true
+      }
+    },
+    methods: {
+      genCode (data) {
+        this.$refs.form2.validate((valid) => {
+          if (valid) {
+            for(var index in data){
+              this.form2.tables.push(data[index]["tableName"]);
             }
-        },
-        data() {
-            return {
-                form2: {
-                    project: "admin",
-                    projectCN: "系统管理",
-                    mainPackage: "com.zhxsoft",
-                    tables: ""
-                },
-                rules2: {
-                    project: [{required: true, message: '项目名不能为空', trigger: 'change'}],
-                    projectCN: [{required: true, message: '项目中文名不能为空', trigger: 'change'}],
-                    mainPackage: [{required: true, message: '主包名不能为空', trigger: 'change'}]
-                },
-                currentTableData: [],
-                multipleSelection: [],
-                columns: [
-                    {label: '表名', prop: 'tableName'},
-                    {label: '说明', prop: 'tableComment'}
-                ]
-            }
-        },
-        watch: {
-            tableData: {
-                handler(val) {
-                    this.currentTableData = val
-                },
-                immediate: true
-            }
-        },
-        methods: {
-            genCode(data) {
-                this.$refs.form2.validate((valid) => {
-                    if (valid) {
-                        this.form2.tables = data;
-                        console.debug("form2:"+JSON.stringify(this.form2));
-                        this.$emit('submit', this.form2)
-                    } else {
-                        this.$notify.error({
-                            title: '错误',
-                            message: '表单校验失败'
-                        })
-                        return false
-                    }
-                })
-            },
+            console.debug('form2:' + JSON.stringify(this.form2))
+            this.$emit('submit', this.form2)
+          } else {
+            this.$notify.error({
+              title: '错误',
+              message: '表单校验失败'
+            })
+            return false
+          }
+        })
+      },
 
-            handleSwitchChange(val, index) {
-                const oldValue = this.currentTableData[index]
-                this.$set(this.currentTableData, index, {
-                    ...oldValue,
-                    type: val
-                })
-                // 注意 这里并没有把修改后的数据传递出去 如果需要的话请自行修改
-            },
-            handleSelectionChange(val) {
-                this.multipleSelection = val
-            }
-        }
+      handleSwitchChange (val, index) {
+        const oldValue = this.currentTableData[index]
+        this.$set(this.currentTableData, index, {
+          ...oldValue,
+          type: val
+        })
+        // 注意 这里并没有把修改后的数据传递出去 如果需要的话请自行修改
+      },
+      handleSelectionChange (val) {
+        this.multipleSelection = val
+      }
     }
+  }
 </script>
