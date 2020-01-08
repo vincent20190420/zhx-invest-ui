@@ -1,11 +1,11 @@
 export default {
-  path: '/system',
-  title: '系统管理',
+  path: '/admin',
+  title: '后台管理',
   icon: 'cog',
   children: (pre => [
-    { path: `${pre}index`, title: '系统管理', icon: 'cog' },
+    { path: `${pre}index`, title: '后台管理', icon: 'cog' },
     {
-      title: '用户管理',
+      title: '权限设置',
       icon: 'user',
       children: [
         { path: `${pre}table/1`, title: '表格 1' }
@@ -18,5 +18,5 @@ export default {
         { path: `${pre}issues/142`, title: '#142' }
       ]
     }
-  ])('/system')
+  ])('/admin/')
 }
