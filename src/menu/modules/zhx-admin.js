@@ -8,14 +8,19 @@ export default {
       title: '权限设置',
       icon: 'user',
       children: [
-        { path: `${pre}table/1`, title: '表格 1' }
+        { path: `${pre}menu`, title: '菜单管理' },
+        { path: `${pre}role`, title: '角色管理' },
+        { path: `${pre}dept`, title: '部门管理' },
+        { path: `${pre}user`, title: '用户管理' }
       ]
     },
     {
-      title: '角色管理',
-      icon: 'users',
+      title: '系统设置',
+      icon: 'user',
       children: [
-        { path: `${pre}issues/142`, title: '#142' }
+        { path: `${pre}conf`, title: '参数管理' },
+        { path: `${pre}dict`, title: '字典管理' },
+        { path: `${pre}task`, title: '定时任务' }
       ]
     }
   ])('/admin/')

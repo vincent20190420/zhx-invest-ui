@@ -14,9 +14,9 @@ import demoBusiness from './modules/demo-business'
 import demoD2Crud from './modules/demo-d2-crud'
 // 第三方网页
 import demoFrame from './modules/demo-frame'
-//系统管理
+// 系统管理
 import admin from './modules/zhx-admin'
-//程序员工具
+// 程序员工具
 import tools from './modules/zhx-tools'
 
 // 菜单 侧边栏

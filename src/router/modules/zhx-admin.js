@@ -20,6 +20,15 @@ export default {
         ...meta,
         title: '后台管理'
       }
+    },
+    {
+      path: 'user',
+      name: `${pre}user`,
+      component: _import('admin/user/index'),
+      meta: {
+        ...meta,
+        title: '用户管理'
+      }
     }
   ])('zhx-admin-')
 }
