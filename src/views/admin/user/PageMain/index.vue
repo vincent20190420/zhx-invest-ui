@@ -71,16 +71,11 @@
     },
     data () {
       return {
-        rules2: {
-          project: [{ required: true, message: '项目名不能为空', trigger: 'change' }],
-          projectCN: [{ required: true, message: '项目中文名不能为空', trigger: 'change' }],
-          mainPackage: [{ required: true, message: '主包名不能为空', trigger: 'change' }]
-        },
         currentTableData: [],
         multipleSelection: [],
         columns: [
-          { label: '表名', prop: 'tableName' },
-          { label: '说明', prop: 'tableComment' }
+          { label: '用户名', prop: 'username' },
+          { label: '手机', prop: 'mobile' }
         ]
       }
     },

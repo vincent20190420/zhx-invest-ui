@@ -7,7 +7,7 @@
         <demo-page-main
                 :table-data="table"
                 :loading="loading"
-                @submit="genCode"/>
+                @submit="handleSubmit"/>
         <demo-page-footer
                 slot="footer"
                 :current="page.current"

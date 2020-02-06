@@ -2,6 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
 import util from '@/libs/util'
+import qs from 'querystring'
 
 // 创建一个错误
 function errorCreate (msg) {
@@ -46,7 +47,16 @@ service.interceptors.request.use(
     // 在请求发送之前做一些处理
     const token = util.cookies.get('token')
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-    config.headers['X-Token'] = token
+    // config.headers['X-Token'] = token
+    config.headers['Authorization'] = token
+    config.headers['Access-Control-Allow-Origin'] = '*'
+    config.headers['Access-Control-Allow-Method'] = '*'
+
+    // config.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+    // alert(config.headers['content-type'])
+    // if( config.method === 'post') {
+    //   config.data = qs.stringify(config.data)
+    // }
     return config
   },
   error => {
