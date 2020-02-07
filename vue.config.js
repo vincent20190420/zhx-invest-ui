@@ -21,7 +21,7 @@ module.exports = {
     publicPath // 和 publicPath 保持一致
     // proxy: {
     //   '/*': {
-    //     'target': 'http://localhost:8081/',
+    //     'target': 'http://localhost:8080/',
     //     'changeOrigin': true
     //   }
     // }

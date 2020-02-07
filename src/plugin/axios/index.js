@@ -42,20 +42,22 @@ const service = axios.create({
 })
 
 // service.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-// service.defaults.withCredentials = true
+// service.defaults.withCredentials = false
+// service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 // 请求拦截器
 service.interceptors.request.use(
   config => {
     // 在请求发送之前做一些处理
     const token = util.cookies.get('token')
+
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     // config.headers['X-Token'] = token
     config.headers = {
-      'Content-Type': 'application/json', // 设置很关键
-      'Authorization': token,
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Method': '*'
+      // 'Content-Type': 'application/json', // 设置很关键
+      'Authorization': token
+      // 'Access-Control-Allow-Origin': '*',
+      // 'Access-Control-Allow-Method': '*'
     }
     // config.headers['Authorization'] = token
     // config.headers['Access-Control-Allow-Origin'] = '*'

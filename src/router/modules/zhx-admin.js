@@ -29,6 +29,15 @@ export default {
         ...meta,
         title: '用户管理'
       }
+    },
+    {
+      path: 'role',
+      name: `${pre}role`,
+      component: _import('admin/role/index'),
+      meta: {
+        ...meta,
+        title: '角色管理'
+      }
     }
   ])('zhx-admin-')
 }

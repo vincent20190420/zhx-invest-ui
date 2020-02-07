@@ -42,6 +42,12 @@
                 </template>
             </el-table-column>
 
+            <el-table-column label="姓名" :show-overflow-tooltip="true">
+                <template slot-scope="scope">
+                    {{scope.row.name}}
+                </template>
+            </el-table-column>
+
             <el-table-column label="手机" :show-overflow-tooltip="true">
                 <template slot-scope="scope">
                     {{scope.row.mobile}}
@@ -75,6 +81,7 @@
         multipleSelection: [],
         columns: [
           { label: '用户名', prop: 'username' },
+          { label: '姓名', prop: 'name' },
           { label: '手机', prop: 'mobile' }
         ]
       }

@@ -32,6 +32,7 @@ export default {
             // console.debug("res => " + res)
             util.cookies.set('uuid', res.username)
             util.cookies.set('token', 'bearer ' + res.access_token)
+            // util.cookies.set('token', res.access_token)
             console.log('token => ' + 'bearer ' + res.access_token)
 
             // 设置 vuex 用户信息
