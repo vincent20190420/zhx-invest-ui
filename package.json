@@ -71,5 +71,11 @@
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-template-compiler": "^2.6.10",
     "webpack-theme-color-replacer": "^1.2.15"
+  },
+  "proxyTable": {
+    "/*": {
+      "target": "http://localhost:8080",
+      "changeOrigin":true
+    }
   }
 }

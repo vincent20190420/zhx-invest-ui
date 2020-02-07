@@ -61,7 +61,7 @@ export default {
       async function logout () {
         // 删除cookie
         util.cookies.remove('token')
-        util.cookies.remove('username')
+        util.cookies.remove('uuid')
         // 清空 vuex 用户信息
         await dispatch('d2admin/user/set', {}, { root: true })
         // 跳转路由

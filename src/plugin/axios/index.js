@@ -2,7 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
 import util from '@/libs/util'
-import qs from 'querystring'
+// import qs from 'querystring'
 
 // 创建一个错误
 function errorCreate (msg) {
@@ -41,6 +41,9 @@ const service = axios.create({
   timeout: 5000 // 请求超时时间
 })
 
+// service.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+// service.defaults.withCredentials = true
+
 // 请求拦截器
 service.interceptors.request.use(
   config => {
@@ -48,9 +51,15 @@ service.interceptors.request.use(
     const token = util.cookies.get('token')
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     // config.headers['X-Token'] = token
-    config.headers['Authorization'] = token
-    config.headers['Access-Control-Allow-Origin'] = '*'
-    config.headers['Access-Control-Allow-Method'] = '*'
+    config.headers = {
+      'Content-Type': 'application/json', // 设置很关键
+      'Authorization': token,
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Method': '*'
+    }
+    // config.headers['Authorization'] = token
+    // config.headers['Access-Control-Allow-Origin'] = '*'
+    // config.headers['Access-Control-Allow-Method'] = '*'
 
     // config.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
     // alert(config.headers['content-type'])
