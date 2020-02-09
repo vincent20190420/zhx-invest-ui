@@ -104,6 +104,7 @@
             fetchData() {
                 this.loading = true
                 rolePage({
+                    ...this.form,
                     ...this.pagination
                 }).then(res => {
                     this.data = res.records
