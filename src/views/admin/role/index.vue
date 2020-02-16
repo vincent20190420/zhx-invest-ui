@@ -10,9 +10,12 @@
                  @row-add="handleRowAdd"
                  @dialog-cancel="handleDialogCancel"
                  :loading="loading"
+                 :loading-options="loadingOptions"
                  :pagination="pagination"
                  @pagination-current-change="paginationCurrentChange"
-                 :options="options">
+                 :options="options"
+                 selection-row
+                 @selection-change="handleSelectionChange">
 
             <el-input slot="header" size="mini"
                       v-model="form.roleName"
@@ -75,7 +78,12 @@
         options: {
           stripe: true
         },
-        loading: false,
+        loading: true,
+        loadingOptions: {
+            text: '拼命加载中',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.8)'
+        },
         pagination: {
           current: 1,
           size: 5,
@@ -167,6 +175,9 @@
           type: 'warning'
         })
         done()
+      },
+      handleSelectionChange (selection) {
+        alert(selection)
       }
     }
   }
