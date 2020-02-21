@@ -50,12 +50,14 @@ service.interceptors.request.use(
   config => {
     // 在请求发送之前做一些处理
     const token = util.cookies.get('token')
+    const username = util.cookies.get('username')
 
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     // config.headers['X-Token'] = token
     config.headers = {
       // 'Content-Type': 'application/json', // 设置很关键
-      'Authorization': token
+      'Authorization': token,
+      'username': username
       // 'Access-Control-Allow-Origin': '*',
       // 'Access-Control-Allow-Method': '*'
     }
@@ -96,7 +98,8 @@ service.interceptors.response.use(
           return dataAxios.data
         case 500:
           // [ 示例 ] 其它和后台约定的 code
-          errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`)
+          // errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`)
+          errorCreate(`${dataAxios.mesg}：${dataAxios.data}`)
           break
         default:
           // 不是正确的 code

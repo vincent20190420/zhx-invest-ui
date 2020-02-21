@@ -37,3 +37,23 @@ export function roleSave (data) {
     data
   })
 }
+
+// 修改角色
+export function roleUpdate (data) {
+    return request({
+        baseURL: ZHX_BASE_URL,
+        url: '/role/update',
+        method: 'post',
+        data
+    })
+}
+
+//删除角色
+export function roleDelete (data) {
+    return request({
+        baseURL: ZHX_BASE_URL,
+        url: '/role/delete',
+        method: 'post',
+        data
+    })
+}

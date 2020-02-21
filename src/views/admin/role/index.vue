@@ -5,10 +5,16 @@
                  :data="data"
                  add-title="新增角色"
                  :add-template="addTemplate"
+                 @row-add="handleRowAdd"
+                 :add-rules="addRules"
+                 :rowHandle="rowHandle"
+                 edit-title="修改角色"
+                 :edit-template="editTemplate"
+                 @row-edit="handleRowEdit"
                  :form-options="formOptions"
                  @dialog-open="handleDialogOpen"
-                 @row-add="handleRowAdd"
                  @dialog-cancel="handleDialogCancel"
+                 @row-remove="handleRowRemove"
                  :loading="loading"
                  :loading-options="loadingOptions"
                  :pagination="pagination"
@@ -17,68 +23,59 @@
                  selection-row
                  @selection-change="handleSelectionChange">
 
-            <el-input slot="header" size="mini"
-                      v-model="queryform.roleName"
-                      placeholder="角色名称"
-                      style="width: 200px;margin-top: 15px;margin-bottom: 5px">
-                <template slot="prepend">角色名称</template>
-            </el-input>
+            <el-row slot="header" style="margin-top: 15px;margin-bottom: 5px">
+                <el-input size="mini"
+                          v-model="queryform.roleName"
+                          placeholder="角色名称"
+                          style="width: 200px">
+                    <template slot="prepend">角色名称</template>
+                </el-input>
 
-            <el-input slot="header" size="mini"
-                      v-model="queryform.roleCode"
-                      placeholder="角色编码"
-                      style="width: 200px;margin-top: 15px;margin-bottom: 5px">
-                <template slot="prepend">角色编码</template>
-            </el-input>
+                <el-button-group>
+                    <el-button size="mini" type="primary" @click="fetchData">
+                        <d2-icon name="search"/>
+                        查询
+                    </el-button>
+                    <el-button size="mini" @click="handleFormReset">
+                        <d2-icon name="refresh"/>
+                        重置
+                    </el-button>
+                </el-button-group>
+                <el-button-group style="float:right;">
+                    <el-button size="mini"
+                               type="primary"
+                               icon="el-icon-circle-plus-outline" @click="addRow">
+                        新增
+                    </el-button>
 
-            <el-button slot="header" size="mini"
-                       type="primary"
-                       @click="fetchData">
-                <d2-icon name="search"/>
-                查询
-            </el-button>
+                    <el-button size="mini"
+                               type="danger"
+                               icon="el-icon-delete" @click="addRow">删除
+                    </el-button>
 
-            <el-button slot="header" size="mini"
-                       @click="handleFormReset">
-                <d2-icon name="refresh"/>
-                重置
-            </el-button>
-
-            <el-button slot="header" size="mini" style="float:right;margin-top: 15px;margin-bottom: 5px" type="danger"
-                       icon="el-icon-delete"
-                       @click="addRow">
-                删除
-            </el-button>
-            <el-button slot="header" size="mini" style="float:right;margin-top: 15px;margin-bottom: 5px" type="primary"
-                       icon="el-icon-edit"
-                       @click="addRow">
-                <d2-icon name="new"/>
-                新增
-            </el-button>
-            <!--<el-button slot="header"  size="mini" style="margin-bottom: 5px" @click="addRowWithNewTemplate">使用自定义模板新增</el-button>-->
+                </el-button-group>
+            </el-row>
         </d2-crud>
     </div>
 </template>
 
 <script>
-    import {rolePage, roleSave} from '@api/zhx.admin'
+    import {rolePage, roleSave, roleUpdate, roleDelete} from '@api/zhx.admin'
 
     export default {
         data() {
             return {
                 queryform: {
-                    roleName: '',
-                    roleCode: ''
+                    roleName: ''
                 },
                 columns: [
                     {
-                        title: '角色名称',
-                        key: 'roleName',
-                        sortable: true
+                        title: 'ID',
+                        key: 'id'
                     },
                     {
-                        title: '角色编码',
-                        key: 'roleCode',
+                        title: '角色名称',
+                        key: 'roleName',
                         sortable: true
                     },
                     {
@@ -98,12 +95,60 @@
                         title: '角色名称',
                         value: ''
                     },
-                    roleCode: {
-                        title: '角色编码',
+                    remark: {
+                        title: '备注',
+                        type: 'textarea',
+                        value: ''
+                    }
+                },
+                rowHandle: {
+                    columnHeader: '操作',
+                    edit: {
+                        icon: 'el-icon-edit',
+                        text: '编辑',
+                        size: 'small',
+                        //是否显示
+                        show (index, row) {
+                            if (row.showEditButton) {
+                                return true
+                            }
+                            return true
+                        },
+                        // 是否禁用
+                        disabled (index, row) {
+                            if (row.forbidEdit) {
+                                return true
+                            }
+                            return false
+                        }
+                    },
+                    remove: {
+                        icon: 'el-icon-delete',
+                        size: 'small',
+                        fixed: 'right',
+                        confirm: true,
+                        show (index, row) {
+                            if (row.showRemoveButton) {
+                                return true
+                            }
+                            return true
+                        },
+                        disabled (index, row) {
+                            if (row.forbidRemove) {
+                                return true
+                            }
+                            return false
+                        }
+                    }
+                },
+                editTemplate: {
+                    roleName: {
+                        title: '角色名称',
                         value: ''
                     },
                     remark: {
                         title: '备注',
+                        type: 'textarea',
                         value: ''
                     }
                 },
@@ -113,8 +158,7 @@
                     saveLoading: false
                 },
                 addRules: {
-                    roleName: [{required: true, message: '请输入角色名称', trigger: 'blur'}],
-                    roleCode: [{required: true, message: '请输入角色编码', trigger: 'blur'}]
+                    roleName: [{required: true, message: '请输入角色名称', trigger: 'blur'}]
                 }
             }
         },
@@ -136,7 +180,7 @@
                 }).then(res => {
                     this.data = res.records
                     // this.pagination.total = res.total
-                    this.pagination.total = 1
+                    this.pagination.total = res.total.int()
                     this.loading = false
                 }).catch(err => {
                     console.log('err', err)
@@ -156,14 +200,12 @@
                     mode: 'add'
                 })
             },
-            // 保存
+            // 新增
             handleRowAdd(row, done) {
                 this.formOptions.saveLoading = true
                 roleSave(
                     {
-                        roleName: this.addTemplate.roleName.value,
-                        roleCode: this.addTemplate.roleCode.value,
-                        remark: this.addTemplate.remark.value
+                        ...row
                     }).then(res => {
                     this.$message({
                         message: '保存成功',
@@ -177,6 +219,26 @@
                     this.formOptions.saveLoading = false
                 })
             },
+            // 修改
+            handleRowEdit({ index, row }, done) {
+                this.formOptions.saveLoading = true
+                roleUpdate(
+                    {
+                        ...row
+                    }).then(res => {
+                    this.$message({
+                        message: '保存成功',
+                        type: 'success'
+                    })
+                    done()
+                    this.formOptions.saveLoading = false
+                    this.fetchData();
+                }).catch(err => {
+                    console.log('err', err)
+                    this.formOptions.saveLoading = false
+                })
+            },
+
             //  取消保存
             handleDialogCancel(done) {
                 this.$message({
@@ -191,7 +253,26 @@
             },
             handleSelectionChange(selection) {
                 alert(selection)
-            }
+            },
+            // 删除
+            handleRowRemove ({ index, row }, done) {
+                this.formOptions.saveLoading = true
+                roleDelete(
+                    {
+                        ...row.id
+                    }).then(res => {
+                    this.$message({
+                        message: '删除成功',
+                        type: 'success'
+                    })
+                    done()
+                    this.formOptions.saveLoading = false
+                    this.fetchData();
+                }).catch(err => {
+                    console.log('err', err)
+                    this.formOptions.saveLoading = false
+                })
+            },
         }
     }
 </script>
