@@ -48,6 +48,16 @@ export function roleUpdate (data) {
     })
 }
 
+//批量删除角色
+export function rolesDelete (data) {
+  return request({
+    baseURL: ZHX_BASE_URL,
+    url: '/role/delete',
+    method: 'post',
+    data
+  })
+}
+
 //删除角色
 export function roleDelete (data) {
     return request({
