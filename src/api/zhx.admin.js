@@ -52,7 +52,7 @@ export function roleUpdate (data) {
 export function rolesDelete (data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/role/delete',
+    url: '/role/deleteBatch',
     method: 'post',
     data
   })
