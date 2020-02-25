@@ -47,3 +47,13 @@ export function stockDelete(data) {
   })
 }
 
+// 下载历史数据
+export function importHistoryData(data) {
+  return request({
+    baseURL: ZHX_BASE_URL,
+    url: '/invest/stockHistory/importHistoryData',
+    method: 'post',
+    data
+  })
+}
+
