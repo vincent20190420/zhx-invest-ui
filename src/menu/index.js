@@ -16,8 +16,11 @@ import demoD2Crud from './modules/demo-d2-crud'
 import demoFrame from './modules/demo-frame'
 // 系统管理
 import admin from './modules/zhx-admin'
+// 投资管理
+import invest from './modules/zhx-invest'
 // 程序员工具
 import tools from './modules/zhx-tools'
+
 
 // 菜单 侧边栏
 export const menuAside = [
@@ -30,6 +33,7 @@ export const menuAside = [
   demoD2Crud,
   demoFrame,
   admin,
+  invest,
   tools
 ]
 
@@ -67,5 +71,6 @@ export const menuHeader = [
   demoPlayground,
   demoBusiness,
   admin,
+  invest,
   tools
 ]

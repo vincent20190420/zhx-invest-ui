@@ -7,7 +7,9 @@ import components from './modules/components'
 import element from './modules/element'
 import business from './modules/business'
 import admin from './modules/zhx-admin'
+import invest from './modules/zhx-invest'
 import tools from './modules/zhx-tools'
+
 
 import layoutHeaderAside from '@/layout/header-aside'
 
@@ -67,6 +69,7 @@ const frameIn = [
   element,
   business,
   admin,
+  invest,
   tools
 ]
 
