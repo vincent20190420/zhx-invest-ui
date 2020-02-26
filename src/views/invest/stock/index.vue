@@ -91,7 +91,8 @@
           },
           {
             title: '股票代码',
-            key: 'code'
+            key: 'code',
+            sortable: true // 排序
           },
           {
             title: '昨收',
