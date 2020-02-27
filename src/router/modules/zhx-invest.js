@@ -29,6 +29,16 @@ export default {
         ...meta,
         title: '股票池'
       }
+    },
+    {
+      path: 'stock/info:id',
+      name: `${pre}stock-info`,
+      component: _import('invest/stock/info'),
+      // props: true,
+      meta: {
+        ...meta,
+        title: '股票明细'
+      }
     }
   ])('zhx-invest-')
 }
