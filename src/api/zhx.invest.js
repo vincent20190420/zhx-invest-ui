@@ -21,7 +21,7 @@ export function stockPage (data) {
 export function stockSave (data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/save',
+    url: '/invest/stock/saveStock',
     method: 'post',
     data
   })

@@ -31,10 +31,10 @@ export default {
       }
     },
     {
-      path: 'stock/info:id',
+      path: 'stock/info/:id',
       name: `${pre}stock-info`,
       component: _import('invest/stock/info'),
-      // props: true,
+      props: true,
       meta: {
         ...meta,
         title: '股票明细'

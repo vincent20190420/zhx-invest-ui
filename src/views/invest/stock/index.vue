@@ -89,13 +89,13 @@
                     {
                         title: '股票名称',
                         key: 'name',
-                        width: '100',
+                        width: '110',
                         sortable: true // 排序
                     },
                     {
                         title: '股票代码',
                         key: 'code',
-                        width: '100',
+                        width: '110',
                         sortable: true // 排序
                     },
                     {
@@ -114,7 +114,7 @@
                         width: '100'
                     },
                     {
-                        title: '涨幅',
+                        title: '涨幅（%）',
                         key: 'increase',
                         width: '100'
                     },
@@ -126,12 +126,12 @@
                     {
                         title: '成交量（手）',
                         key: 'volume',
-                        width: '100'
+                        width: '120'
                     },
                     {
                         title: '成交额（万）',
                         key: 'amount',
-                        width: '100'
+                        width: '120'
                     },
 
                     {
@@ -183,7 +183,7 @@
                                 },
                                 {
                                     value: 'sz',
-                                    label: '深圳'
+                                    label: '深证'
                                 }
                             ],
                             span: 12
@@ -215,7 +215,7 @@
                                 },
                                 {
                                     value: 'sz',
-                                    label: '深圳'
+                                    label: '深证'
                                 }
                             ],
                             span: 12
