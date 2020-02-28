@@ -74,7 +74,7 @@
 </template>
 
 <script>
-    import {stockPage, stockSave, stockUpdate, stockDelete, stockHistory} from '@api/zhx.invest'
+    import {stockPage, stockSave, stockDelete, stockHistory} from '@api/zhx.invest'
 
     export default {
         data() {
@@ -365,7 +365,7 @@
             // 修改
             handleRowEdit({index, row}, done) {
                 this.formOptions.saveLoading = true
-                stockUpdate(
+                stockSave(
                     {
                         ...row
                     }).then(res => {

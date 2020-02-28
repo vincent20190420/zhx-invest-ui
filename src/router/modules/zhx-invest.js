@@ -27,7 +27,7 @@ export default {
       component: _import('invest/stock/index'),
       meta: {
         ...meta,
-        title: '股票池'
+        title: '行情'
       }
     },
     {

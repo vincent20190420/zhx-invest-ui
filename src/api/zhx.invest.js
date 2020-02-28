@@ -27,16 +27,6 @@ export function stockSave (data) {
   })
 }
 
-// 修改
-export function stockUpdate(data) {
-  return request({
-    baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/update',
-    method: 'post',
-    data
-  })
-}
-
 // 删除
 export function stockDelete(data) {
   return request({
