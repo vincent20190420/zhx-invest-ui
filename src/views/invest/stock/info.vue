@@ -5,25 +5,72 @@
         <el-divider content-position="left">基本信息</el-divider>
         <el-form
                 ref="form"
-                :model="form"
+                :model="baseInfoForm"
+                label-width="80px"
+                class="page--form"
+                disabled="disabled">
+            <!-- span=6 4列 span=8 3列 span=12 2列 span=24 1列 -->
+            <el-row>
+                <el-col span="6">
+                    <el-form-item label="股票名称">
+                        <el-input v-model="baseInfoForm.name"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="股票编码">
+                        <el-input v-model="baseInfoForm.code"/>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </el-form>
+        <el-divider content-position="left">统计数据</el-divider>
+        <el-form
+                ref="form"
+                :model="countInfoForm"
                 label-width="80px"
                 class="page--form"
                 disabled="disabled">
             <el-row>
-                <el-col span="10">
-                    <el-form-item label="股票名称">
-                        <el-input v-model="form.name"/>
-                    </el-form-item>
-                </el-col>
-                <el-col span="10">
-                    <el-form-item label="股票编码">
-                        <el-input v-model="form.code"/>
+                <el-col span="6">
+                    <el-form-item label="交易天数">
+                        <el-input v-model="countInfoForm.days"/>
                     </el-form-item>
                 </el-col>
             </el-row>
-            <!--<el-form-item>-->
-            <!--<el-button type="primary" @click="handleSubmit">修改</el-button>-->
-            <!--</el-form-item>-->
+            <el-row>
+                <el-col span="6">
+                    <el-form-item label="上涨天数">
+                        <el-input v-model="countInfoForm.upDays"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="下跌天数">
+                        <el-input v-model="countInfoForm.downDays"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="平收天数">
+                        <el-input v-model="countInfoForm.flatDays"/>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col span="6">
+                    <el-form-item label="上涨概率">
+                        <el-input v-model="countInfoForm.upRatio"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="下跌概率">
+                        <el-input v-model="countInfoForm.downRatio"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="平收概率">
+                        <el-input v-model="countInfoForm.flatRatio"/>
+                    </el-form-item>
+                </el-col>
+            </el-row>
         </el-form>
     </d2-container>
 </template>
@@ -64,7 +111,7 @@
 <style lang="scss">
     .page {
         .page--form {
-            max-width: 460px;
+            max-width: 1000px;
         }
     }
 </style>
