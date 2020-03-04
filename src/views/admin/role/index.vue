@@ -83,7 +83,8 @@
                 data: [],
                 // 表格斑马线
                 options: {
-                    stripe: true
+                    stripe: true,//斑马线
+                    height: 350 //固定表头，设置表格高度
                 },
                 // 加载状态
                 loading: false,
@@ -108,9 +109,13 @@
                 // 定义操作列
                 rowHandle: {
                     columnHeader: '操作',
+                    width: '100',
+                    fixed: 'right',//固定列
                     edit: {
                         icon: 'el-icon-edit',
-                        text: '编辑',
+                        circle: true,
+                        type: "info",
+                        text: ' ',
                         size: 'small',
                         //是否显示
                         show(index, row) {
