@@ -22,7 +22,7 @@ export function page (data) {
 export function rolePage (data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/role/page1',
+    url: '/role/page',
     method: 'post',
     data
   })

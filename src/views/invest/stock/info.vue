@@ -6,7 +6,7 @@
         <el-form
                 ref="form"
                 :model="baseInfoForm"
-                label-width="80px"
+                label-width="120px"
                 class="page--form"
                 disabled="disabled">
             <!-- span=6 4列 span=8 3列 span=12 2列 span=24 1列 -->
@@ -27,7 +27,7 @@
         <el-form
                 ref="form"
                 :model="countInfoForm"
-                label-width="80px"
+                label-width="120px"
                 class="page--form"
                 disabled="disabled">
             <el-row>
@@ -68,6 +68,40 @@
                 <el-col span="6">
                     <el-form-item label="平收概率">
                         <el-input v-model="countInfoForm.flatRatio"/>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col span="6">
+                    <el-form-item label="上涨超1%天数">
+                        <el-input v-model="countInfoForm.gt1days"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="上涨超2%天数">
+                        <el-input v-model="countInfoForm.gt2days"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="上涨超3%天数">
+                        <el-input v-model="countInfoForm.gt3days"/>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col span="6">
+                    <el-form-item label="下跌超1%天数">
+                        <el-input v-model="countInfoForm.lt1days"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="下跌超2%天数">
+                        <el-input v-model="countInfoForm.lt2days"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="下跌超3%天数">
+                        <el-input v-model="countInfoForm.lt3days"/>
                     </el-form-item>
                 </el-col>
             </el-row>
