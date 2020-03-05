@@ -87,6 +87,11 @@
                         <el-input v-model="countInfoForm.gt3days"/>
                     </el-form-item>
                 </el-col>
+                <el-col span="6">
+                    <el-form-item label="涨停天数">
+                        <el-input v-model="countInfoForm.gt998days"/>
+                    </el-form-item>
+                </el-col>
             </el-row>
             <el-row>
                 <el-col span="6">
@@ -102,6 +107,11 @@
                 <el-col span="6">
                     <el-form-item label="下跌超3%天数">
                         <el-input v-model="countInfoForm.lt3days"/>
+                    </el-form-item>
+                </el-col>
+                <el-col span="6">
+                    <el-form-item label="跌停天数">
+                        <el-input v-model="countInfoForm.lt998days"/>
                     </el-form-item>
                 </el-col>
             </el-row>

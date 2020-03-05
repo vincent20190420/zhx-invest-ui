@@ -27,9 +27,11 @@ export default {
         gt1days: '',
         gt2days: '',
         gt3days: '',
+        gt998days: '',
         lt1days: '',
         lt2days: '',
         lt3days: '',
+        lt998days: '',
       }
     }
   },
@@ -48,10 +50,26 @@ export default {
         stockInfo(id)
           .then(res => {
             const { name, code } = res.stockInfo
-            const {days, upDays,downDays,flatDays,upRatio,downRatio,flatRatio,gt1days,gt2days,gt3days,lt1days,lt2days,lt3days} = res.stockCount
-            this.baseInfoForm = { name, code}
-            this.countInfoForm = {days, upDays,downDays,flatDays,upRatio,downRatio,flatRatio,gt1days,gt2days,gt3days,lt1days,lt2days,lt3days}
-            this.$message.success('获取股票明细：'+ this.baseInfoForm.name)
+            const { days, upDays, downDays, flatDays, upRatio, downRatio, flatRatio, gt1days, gt2days, gt3days, gt998days, lt1days, lt2days, lt3days, lt998days } = res.stockCount
+            this.baseInfoForm = { name, code }
+            this.countInfoForm = {
+              days,
+              upDays,
+              downDays,
+              flatDays,
+              upRatio,
+              downRatio,
+              flatRatio,
+              gt1days,
+              gt2days,
+              gt3days,
+              gt998days,
+              lt1days,
+              lt2days,
+              lt3days,
+              lt998days
+            }
+            this.$message.success('获取股票明细：' + this.baseInfoForm.name)
             resolve()
           })
           .catch(err => {
