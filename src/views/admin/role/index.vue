@@ -23,7 +23,7 @@
 
             <el-row slot="header" style="margin-top: 15px;margin-bottom: 5px">
                 <el-input size="mini"
-                          v-model="queryform.roleName"
+                          v-model="queryForm.roleName"
                           placeholder="角色名称"
                           style="width: 200px">
                     <template slot="prepend">角色名称</template>
@@ -64,7 +64,7 @@
         data() {
             return {
                 // 查询条件表单
-                queryform: {
+                queryForm: {
                     roleName: ''
                 },
                 // 表格列定义
@@ -102,8 +102,10 @@
                     },
                     remark: {
                         title: '备注',
-                        type: 'textarea',
-                        value: ''
+                        value: '',
+                        component: {
+                            type: 'textarea'
+                        }
                     }
                 },
                 // 定义操作列
@@ -159,8 +161,10 @@
                     },
                     remark: {
                         title: '备注',
-                        type: 'textarea',
-                        value: ''
+                        value: '',
+                        component: {
+                            type: 'textarea'
+                        }
                     }
                 },
                 // 弹出窗样式定义
@@ -190,7 +194,7 @@
             fetchData() {
                 this.loading = true
                 rolePage({
-                    ...this.queryform,
+                    ...this.queryForm,
                     ...this.pagination
                 }).then(res => {
                     this.data = res.records
@@ -264,7 +268,7 @@
             },
             // 重置查询条件
             handleFormReset() {
-                this.queryform = {}
+                this.queryForm = {}
             },
             // 复选框勾选事件
             handleSelectionChange(selection) {

@@ -24,14 +24,14 @@
 
             <el-row slot="header" style="margin-top: 15px;margin-bottom: 5px">
                 <el-input size="mini"
-                          v-model="queryform.name"
+                          v-model="queryForm.name"
                           placeholder="股票名称"
                           style="width: 200px">
                     <template slot="prepend">股票名称</template>
                 </el-input>
 
                 <el-input size="mini"
-                          v-model="queryform.code"
+                          v-model="queryForm.code"
                           placeholder="股票代码"
                           style="width: 200px">
                     <template slot="prepend">股票代码</template>
@@ -80,7 +80,7 @@
     data () {
       return {
         // 查询条件表单
-        queryform: {
+        queryForm: {
           name: '',
           code: ''
         },
@@ -318,7 +318,7 @@
       fetchData () {
         this.loading = true
         stockPage({
-          ...this.queryform,
+          ...this.queryForm,
           ...this.pagination
         }).then(res => {
           this.data = res.records
@@ -392,7 +392,7 @@
       },
       // 重置查询条件
       handleFormReset () {
-        this.queryform = {}
+        this.queryForm = {}
       },
       // 复选框勾选事件
       handleSelectionChange (selection) {
