@@ -17,6 +17,7 @@ export function genCode (data) {
     url: '/generator/code',
     method: 'post',
     responseType: 'blob',
+    // responseType: 'arraybuffer',
     data
   })
 }

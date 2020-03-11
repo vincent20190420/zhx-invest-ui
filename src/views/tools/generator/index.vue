@@ -182,8 +182,9 @@
                         type: 'success'
                     })
                     this.loading = false
+                    // https://www.cnblogs.com/cx709452428/p/10179138.html
                     // let blob = new Blob([res.data], {type: "application/vnd.ms-excel"});//返回excel
-                    let blob = new Blob([res], {type: "application/zip"});//返回zip
+                    let blob = new Blob([res], {type: "application/zip;charset=utf-8"});//返回zip
                     let url = window.URL.createObjectURL(blob);
                     window.location.href = url;
 
