@@ -51,7 +51,7 @@
 
 
                 <el-input size="mini"
-                          v-model="genForm.mainPackage"
+                          v-model="genForm.mainPath"
                           placeholder="主包名"
                           style="width: 200px">
                     <template slot="prepend">主包名</template>
@@ -70,133 +70,136 @@
 </template>
 
 <script>
-  import { tableList, genCode } from '@api/zhx.tools'
+    import {tableList, genCode} from '@api/zhx.tools'
 
-  export default {
-    data () {
-      return {
-        // 查询条件表单
-        queryForm: {
-          service: 'zhx-admin',
-          tableName: ''
+    export default {
+        data() {
+            return {
+                // 查询条件表单
+                queryForm: {
+                    service: 'zhx-admin',
+                    tableName: 'st_'
+                },
+                // 生成代码参数表单
+                genForm: {
+                    service: '',
+                    project: 'admin',
+                    mainPath: 'com.zhxsoft',
+                    tables: ''
+                },
+                // 表格列定义
+                columns: [
+                    {
+                        title: '表名',
+                        key: 'tableName',
+                        sortable: true // 排序
+                    },
+                    {
+                        title: '注释',
+                        key: 'tableComment',
+                    },
+                    {
+                        title: '引擎',
+                        key: 'engine',
+                    },
+                    {
+                        title: '创建时间',
+                        key: 'createTime',
+                    }
+                ],
+                // 表格数据
+                data: [],
+                // 表格样式定义
+                options: {
+                    stripe: true,//斑马线
+                    height: 350 //固定表头，设置表格高度
+                },
+                // 加载状态
+                loading: false,
+                // 分页，字段命名不可修改
+                pagination: {
+                    currentPage: 1,
+                    pageSize: 5,
+                    total: 0
+                },
+                // 选中行
+                multipleSelection: []
+            }
         },
-        // 生成代码参数表单
-        genForm: {
-          service: '',
-          project: 'admin',
-          mainPackage: 'com.zhxsoft.admin',
-          tables: ''
+        mounted() {
+            this.fetchData()
         },
-        // 表格列定义
-        columns: [
-          {
-            title: '表名',
-            key: 'tableName',
-            sortable: true // 排序
-          },
-          {
-            title: '注释',
-            key: 'tableComment',
-          },
-          {
-            title: '引擎',
-            key: 'engine',
-          },
-          {
-            title: '创建时间',
-            key: 'createTime',
-          }
-        ],
-        // 表格数据
-        data: [],
-        // 表格样式定义
-        options: {
-          stripe: true,//斑马线
-          height: 350 //固定表头，设置表格高度
-        },
-        // 加载状态
-        loading: false,
-        // 分页，字段命名不可修改
-        pagination: {
-          currentPage: 1,
-          pageSize: 5,
-          total: 0
-        },
-        // 选中行
-        multipleSelection: []
-      }
-    },
-    mounted () {
-      this.fetchData()
-    },
-    methods: {
-      // 跳转到指定页
-      paginationCurrentChange (currentPage) {
-        this.pagination.currentPage = currentPage
-        this.fetchData()
-      },
-      // 切换每页条数
-      paginationSizeChange (pageSize) {
-        this.pagination.pageSize = pageSize
-        this.fetchData()
-      },
-      // 查询数据
-      fetchData () {
-        this.loading = true
-        tableList({
-          ...this.queryForm,
-          ...this.pagination
-        }).then(res => {
-          this.data = res.records
-          this.pagination.total = res.total * 1
-          this.loading = false
-        }).catch(err => {
-          console.log('err', err)
-          this.loading = false
-        })
-      },
-      // 生成代码
-      genCode () {
+        methods: {
+            // 跳转到指定页
+            paginationCurrentChange(currentPage) {
+                this.pagination.currentPage = currentPage
+                this.fetchData()
+            },
+            // 切换每页条数
+            paginationSizeChange(pageSize) {
+                this.pagination.pageSize = pageSize
+                this.fetchData()
+            },
+            // 查询数据
+            fetchData() {
+                this.loading = true
+                tableList({
+                    ...this.queryForm,
+                    ...this.pagination
+                }).then(res => {
+                    this.data = res.records
+                    this.pagination.total = res.total * 1
+                    this.loading = false
+                }).catch(err => {
+                    console.log('err', err)
+                    this.loading = false
+                })
+            },
+            // 生成代码
+            genCode() {
 
-        if (this.multipleSelection.length == 0) {
-          this.$message({
-            message: '请至少选择一条记录',
-            type: 'error'
-          })
-          return false
+                if (this.multipleSelection.length == 0) {
+                    this.$message({
+                        message: '请至少选择一条记录',
+                        type: 'error'
+                    })
+                    return false
+                }
+                this.loading = true
+                var tables = []
+                for (var index in this.multipleSelection) {
+                    tables.push(this.multipleSelection[index]['tableName'])
+                }
+                this.genForm.tables = tables
+                this.genForm.service = this.queryForm.service
+
+                genCode(
+                    {
+                        ...this.genForm
+                    }).then(res => {
+                    this.$message({
+                        message: '生成代码成功',
+                        type: 'success'
+                    })
+                    this.loading = false
+                    // let blob = new Blob([res.data], {type: "application/vnd.ms-excel"});//返回excel
+                    let blob = new Blob([res], {type: "application/zip"});//返回zip
+                    let url = window.URL.createObjectURL(blob);
+                    window.location.href = url;
+
+                }).catch(err => {
+                    console.log('err', err)
+                    this.loading = false
+                })
+            },
+            // 重置查询条件
+            handleFormReset() {
+                this.queryForm = {}
+            },
+            // 复选框勾选事件
+            handleSelectionChange(selection) {
+                this.multipleSelection = selection
+            }
         }
-        this.loading = true
-        var tables = []
-        for (var index in this.multipleSelection) {
-          tables.push(this.multipleSelection[index]['tableName'])
-        }
-        this.genForm.tables = tables
-        this.genForm.service = this.queryForm.service
-
-        genCode(
-          {
-            ...this.genForm
-          }).then(res => {
-          this.$message({
-            message: '生成代码成功',
-            type: 'success'
-          })
-          done()
-          this.loading = false
-          this.fetchData()
-        }).catch(err => {
-          console.log('err', err)
-          this.loading = false
-        })
-      },
-      // 重置查询条件
-      handleFormReset () {
-        this.queryForm = {}
-      },
-      // 复选框勾选事件
-      handleSelectionChange (selection) {
-        this.multipleSelection = selection
-      }
     }
-  }
 </script>

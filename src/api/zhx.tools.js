@@ -16,6 +16,7 @@ export function genCode (data) {
     baseURL: ZHX_BASE_URL,
     url: '/generator/code',
     method: 'post',
+    responseType: 'blob',
     data
   })
 }
