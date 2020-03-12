@@ -29,11 +29,11 @@
                 </el-input>
 
                 <el-button-group>
-                    <el-button size="mini" type="primary" @click="fetchData">
+                    <el-button size="mini" round="true" type="primary" @click="fetchData">
                         <d2-icon name="search"/>
                         查询
                     </el-button>
-                    <el-button size="mini" @click="handleFormReset">
+                    <el-button size="mini" round="true" @click="handleFormReset">
                         <d2-icon name="refresh"/>
                         重置
                     </el-button>
@@ -60,7 +60,8 @@
                 <el-button-group>
                     <el-button size="mini"
                                type="primary"
-                               icon="el-icon-circle-plus-outline"
+                               round="true"
+                               icon="el-icon-document"
                                @click="genCode">生成代码
                     </el-button>
                 </el-button-group>
