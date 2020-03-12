@@ -191,3 +191,7 @@ D2Admin 是完全开源免费的项目，旨在帮助开发者更方便地进行
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fd2-projects%2Fd2-admin.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fd2-projects%2Fd2-admin?ref=badge_large)
 
 ![](https://raw.githubusercontent.com/FairyEver/d2-admin/master/doc/image/give-a-star@2x.png)
+
+注意事项
+1. 无法下载后台压缩包
+vue.config.js注释掉107行.add('@/mock')

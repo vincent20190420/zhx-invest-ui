@@ -182,11 +182,9 @@
             type: 'success'
           })
           this.loading = false
-          // https://www.cnblogs.com/cx709452428/p/10179138.html
-          // let blob = new Blob([res.data], {type: "application/vnd.ms-excel"});//返回excel
-          // let blob = new Blob([res], {type: "application/zip;charset=utf-8"});//返回zip
+
           console.log("===>"+res)
-          // const blob = new Blob([res])
+
           const blob = new Blob([res], { type: 'application/zip;charset=utf-8' })
 
           // const fileName = res.headers["Content-Disposition"].split(";")[1].split("=")[1];//下载的文件名称及其后缀，后缀要和后台保持的一致
