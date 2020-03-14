@@ -78,14 +78,14 @@
       return {
         // 查询条件表单
         queryForm: {
-          service: 'zhx-admin',
+          service: 'zhx-invest',
           tableName: 'st_'
         },
         // 生成代码参数表单
         genForm: {
           service: '',
-          project: 'admin',
-          mainPath: 'com.zhxsoft',
+          project: 'invest',
+          mainPath: 'com.zhx',
           tables: ''
         },
         // 表格列定义
