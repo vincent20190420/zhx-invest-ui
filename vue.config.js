@@ -104,7 +104,7 @@ module.exports = {
     const entry = config.entry('app')
     if (process.env.VUE_APP_BUILD_MODE !== 'NOMOCK') {
       entry
-      // .add('@/mock') // 注释后才能下载zip包 updated by vincent on 2020/3/12 16:55
+      // .add('@/mock') // 注释后才能下载zip包 updated by vincent on 2020/3/12 16:55  
         .end()
     }
   },
