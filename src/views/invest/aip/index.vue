@@ -23,10 +23,17 @@
 
             <el-row slot="header" style="margin-top: 15px;margin-bottom: 5px">
                 <el-input size="mini"
-                          v-model="queryForm.remark"
-                          placeholder="备注"
+                          v-model="queryForm.name"
+                          placeholder="投资标的名称"
                           style="width: 200px">
-                    <template slot="prepend">备注</template>
+                    <template slot="prepend">投资标的名称</template>
+                </el-input>
+
+                <el-input size="mini"
+                          v-model="queryForm.code"
+                          placeholder="投资标的代码"
+                          style="width: 200px">
+                    <template slot="prepend">投资标的代码</template>
                 </el-input>
 
                 <el-button-group>
@@ -67,7 +74,8 @@
       return {
         // 查询条件表单
         queryForm: {
-          remark: ''
+          name: '',
+          code: ''
         },
         // 表格列定义
         columns: [
@@ -227,13 +235,18 @@
         },
         // 弹出窗样式定义
         formOptions: {
-          labelWidth: '80px',
+          labelWidth: '120px',
           labelPosition: 'left',
           saveLoading: false
         },
         // 表单验证
         addRules: {
-          remark: [{ required: true, message: '请输入备注', trigger: 'blur' }]
+          name: [{ required: true, message: '请输入投资标的名称', trigger: 'blur' }],
+          code: [{ required: true, message: '请输入投资标的代码', trigger: 'blur' }],
+          highestPrice: [{ required: true, message: '请输入最高价', trigger: 'blur' }],
+          downRatio: [{ required: true, message: '请输入定投跌幅', trigger: 'blur' }],
+          capital: [{ required: true, message: '请输入本金', trigger: 'blur' }],
+          times: [{ required: true, message: '请输入定投次数', trigger: 'blur' }],
         },
         // 选中行
         multipleSelection: []
