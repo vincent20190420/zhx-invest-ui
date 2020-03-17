@@ -29,6 +29,24 @@ export default {
         ...meta,
         title: '代码生成器'
       }
+    },
+    {
+      path: 'swaggerUI',
+      name: `${pre}swaggerUI`,
+      component: _import('tools/swaggerUI/index'),
+      meta: {
+        ...meta,
+        title: 'swaggerUI'
+      }
+    },
+    {
+      path: 'druid',
+      name: `${pre}druid`,
+      component: _import('tools/druid/index'),
+      meta: {
+        ...meta,
+        title: 'druid'
+      }
     }
   ])('zhx-tools-')
 }

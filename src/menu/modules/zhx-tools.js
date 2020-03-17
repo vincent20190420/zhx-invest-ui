@@ -8,6 +8,16 @@ export default {
       title: '代码生成器',
       icon: 'file-code-o ',
       path: `${pre}generator`
+    },
+    {
+      title: 'SwaggerUI',
+      icon: 'file-code-o ',
+      path: `${pre}SwaggerUI`
+    },
+    {
+      title: 'Druid',
+      icon: 'file-code-o ',
+      path: `${pre}druid`
     }
   ])('/tools/')
 }

@@ -31,6 +31,15 @@ export default {
       }
     },
     {
+      path: 'aip',
+      name: `${pre}aip`,
+      component: _import('invest/aip/index'),
+      meta: {
+        ...meta,
+        title: '定投计划'
+      }
+    },
+    {
       path: 'stock/info/:id',
       name: `${pre}stock-info`,
       component: _import('invest/stock/info'),

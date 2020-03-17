@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { page } from '@api/zhx.admin'
+  import { page } from '@api/sys/user.api'
 
   export default {
     // name 值和本页的 $route.name 一致才可以缓存页面

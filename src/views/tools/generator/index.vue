@@ -71,7 +71,7 @@
 </template>
 
 <script>
-  import { tableList, genCode } from '@api/zhx.tools'
+  import { tableList, genCode } from '@api/tools/generator.api'
 
   export default {
     data () {

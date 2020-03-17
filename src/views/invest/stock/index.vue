@@ -74,7 +74,7 @@
 </template>
 
 <script>
-  import { stockPage, stockSave, stockDelete, stockHistory } from '@api/zhx.invest'
+  import { stockPage, stockSave, stockDelete, stockHistory } from '@api/invest/stock.api'
 
   export default {
     data () {

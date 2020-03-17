@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import {rolePage, roleSave, roleUpdate, rolesDelete, roleDelete} from '@api/zhx.admin'
+    import {rolePage, roleSave, roleUpdate, rolesDelete, roleDelete} from '@api/sys/role.api'
 
     export default {
         data() {

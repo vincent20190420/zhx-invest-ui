@@ -1,4 +1,4 @@
-import { stockInfo } from '@api/zhx.invest'
+import { stockInfo } from '@api/invest/stock.api'
 
 export default {
   props: {

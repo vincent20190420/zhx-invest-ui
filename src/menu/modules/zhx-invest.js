@@ -8,7 +8,8 @@ export default {
       title: '股票',
       icon: 'line-chart',
       children: [
-        { path: `${pre}stock`, title: '行情' }
+        { path: `${pre}stock`, title: '行情' },
+        { path: `${pre}aip`, title: '定投计划' }
       ]
     }
   ])('/invest/')
