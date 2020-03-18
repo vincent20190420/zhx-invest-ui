@@ -23,6 +23,15 @@
                  @custom-emit-1="gotoInfoPage">
 
             <el-row slot="header" style="margin-top: 15px;margin-bottom: 5px">
+
+                <el-select v-model="queryForm.stockType" placeholder="股票类型" style="width: 100px;" @change="fetchData">
+                    <el-option v-for="item in stockTypeOptions"
+                               :label="item.text"
+                               :key="item.value"
+                               :value="item.value">
+                    </el-option>
+                </el-select>
+
                 <el-input size="mini"
                           v-model="queryForm.name"
                           placeholder="股票名称"
@@ -38,29 +47,39 @@
                 </el-input>
 
                 <el-button-group>
-                    <el-button size="mini" type="primary" @click="fetchData">
+                    <el-button size="mini" round="true" type="primary" @click="fetchData">
                         <d2-icon name="search"/>
                         查询
                     </el-button>
-                    <el-button size="mini" @click="handleFormReset">
+                    <el-button size="mini" round="true" @click="handleFormReset">
                         <d2-icon name="refresh"/>
                         重置
                     </el-button>
                 </el-button-group>
                 <el-button-group style="float:right;">
                     <el-button size="mini"
+                               round="true"
                                type="primary"
-                               icon="el-icon-circle-plus-outline"
+                               icon="el-icon-plus"
                                @click="addRow">新增
                     </el-button>
 
                     <el-button size="mini"
+                               round="true"
                                type="primary"
-                               icon="el-icon-download"
-                               @click="stockHistory">历史数据
+                               icon="el-icon-sold-out"
+                               @click="stockHistory">历史
                     </el-button>
 
                     <el-button size="mini"
+                               round="true"
+                               type="primary"
+                               icon="el-icon-news"
+                               @click="stockHistory">定投
+                    </el-button>
+
+                    <el-button size="mini"
+                               round="true"
                                type="danger"
                                icon="el-icon-delete"
                                @click="handleRowsRemove">删除
@@ -81,9 +100,16 @@
       return {
         // 查询条件表单
         queryForm: {
+          stockType: 1,
           name: '',
           code: ''
         },
+        // 股票类型下拉框数据
+        stockTypeOptions: [
+          { value: 1, text: '股票' },
+          { value: 2, text: '指数' },
+          { value: 3, text: '基金' }
+        ],
         // 表格列定义
         columns: [
           {
@@ -171,6 +197,28 @@
             title: '股票代码',
             value: ''
           },
+          stockType: {
+            title: '股票类型',
+            value: '',
+            component: {
+              name: 'el-select',
+              options: [
+                {
+                  value: 1,
+                  label: '股票'
+                },
+                {
+                  value: 2,
+                  label: '指数'
+                },
+                {
+                  value: 3,
+                  label: 'ETF'
+                }
+              ],
+              span: 12
+            }
+          },
           market: {
             title: '市场',
             value: '',
@@ -202,6 +250,28 @@
           code: {
             title: '股票代码',
             value: ''
+          },
+          stockType: {
+            title: '股票类型',
+            value: '',
+            component: {
+              name: 'el-select',
+              options: [
+                {
+                  value: 1,
+                  label: '股票'
+                },
+                {
+                  value: 2,
+                  label: '指数'
+                },
+                {
+                  value: 3,
+                  label: 'ETF'
+                }
+              ],
+              span: 12
+            }
           },
           market: {
             title: '市场',
