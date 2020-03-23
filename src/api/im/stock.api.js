@@ -11,7 +11,7 @@ var ZHX_BASE_URL = 'http://localhost:8081'
 export function stockPage (data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/page',
+    url: '/im/stock/page',
     method: 'post',
     data
   })
@@ -21,7 +21,7 @@ export function stockPage (data) {
 export function stockSave (data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/saveStock',
+    url: '/im/stock/saveStock',
     method: 'post',
     data
   })
@@ -31,7 +31,7 @@ export function stockSave (data) {
 export function stockDelete(data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/deleteBatch',
+    url: '/im/stock/deleteBatch',
     method: 'post',
     data
   })
@@ -41,7 +41,7 @@ export function stockDelete(data) {
 export function stockHistory(data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stockHistory/importHistoryData',
+    url: '/im/stockHistory/importHistoryData',
     method: 'post',
     data
   })
@@ -51,7 +51,7 @@ export function stockHistory(data) {
 export function stockInfo(data) {
   return request({
     baseURL: ZHX_BASE_URL,
-    url: '/invest/stock/getStockInfo/'+data,
+    url: '/im/stock/getStockInfo/'+data,
     method: 'get',
     data
   })

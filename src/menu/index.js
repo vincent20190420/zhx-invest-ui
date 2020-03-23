@@ -17,7 +17,7 @@ import demoFrame from './modules/demo-frame'
 // 系统管理
 import admin from './modules/zhx-admin'
 // 投资管理
-import invest from './modules/zhx-invest'
+import im from './modules/zhx-im'
 // 程序员工具
 import tools from './modules/zhx-tools'
 
@@ -33,7 +33,7 @@ export const menuAside = [
   demoD2Crud,
   demoFrame,
   admin,
-  invest,
+  im,
   tools
 ]
 
@@ -71,6 +71,6 @@ export const menuHeader = [
   demoPlayground,
   demoBusiness,
   admin,
-  invest,
+  im,
   tools
 ]

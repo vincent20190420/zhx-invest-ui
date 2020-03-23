@@ -8,7 +8,7 @@ var ZHX_BASE_URL = 'http://localhost:8081'
 export function  AipPage (data) {
     return request({
         baseURL: ZHX_BASE_URL,
-        url: '/st/aip/page',
+        url: '/im/aip/page',
         method: 'post',
         data
     })
@@ -20,7 +20,7 @@ export function  AipPage (data) {
 export function AipSave (data) {
     return request({
         baseURL: ZHX_BASE_URL,
-        url: '/st/aip/save',
+        url: '/im/aip/save',
         method: 'post',
         data
     })
@@ -32,7 +32,7 @@ export function AipSave (data) {
 export function AipUpdate (data) {
     return request({
         baseURL: ZHX_BASE_URL,
-        url: '/st/aip/update',
+        url: '/im/aip/update',
         method: 'post',
         data
     })
@@ -44,7 +44,7 @@ export function AipUpdate (data) {
 export function AipDelete (data) {
     return request({
         baseURL: ZHX_BASE_URL,
-        url: '/st/aip/deleteBatch',
+        url: '/im/aip/deleteBatch',
         method: 'post',
         data
     })

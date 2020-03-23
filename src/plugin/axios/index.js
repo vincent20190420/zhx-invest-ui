@@ -99,7 +99,8 @@ service.interceptors.response.use(
         case 500:
           // [ 示例 ] 其它和后台约定的 code
           // errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`)
-          errorCreate(`${dataAxios.mesg}：${dataAxios.data}`)
+          // errorCreate(`${dataAxios.mesg}：${dataAxios.data}`)
+          errorCreate(`${dataAxios.mesg}`)
           break
         default:
           // 不是正确的 code
